@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+
+@layer utilities {
+  .section-title {
+    @apply text-3xl font-bold text-slate-900 mb-2;
+  }
+  .section-subtitle {
+    @apply text-slate-500 mb-10 text-base;
+  }
+}
