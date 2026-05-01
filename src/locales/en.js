@@ -6,6 +6,18 @@ export default {
     projects: 'Projects',
     contact: 'Contact',
     downloadCV: 'Download CV',
+    blog: 'Blog',
+  },
+
+  blog: {
+    title: 'Blog',
+    subtitle: 'Articles & experience feedback',
+    allArticles: 'View all articles',
+    readMore: 'Read article →',
+    backToBlog: 'All articles',
+    backToPortfolio: 'Back to portfolio',
+    minRead: 'min read',
+    publishedOn: 'Published on',
   },
 
   hero: {

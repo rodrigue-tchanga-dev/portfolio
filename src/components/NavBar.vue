@@ -25,6 +25,9 @@ const links = ['about', 'skills', 'experience', 'projects', 'contact']
         >
           {{ t.nav[key] }}
         </a>
+        <a href="?blog" class="text-slate-400 hover:text-white transition-colors">
+          {{ t.nav.blog }}
+        </a>
       </nav>
 
       <!-- Actions -->
@@ -66,6 +69,9 @@ const links = ['about', 'skills', 'experience', 'projects', 'contact']
         class="text-slate-300 hover:text-white text-sm font-medium"
       >
         {{ t.nav[key] }}
+      </a>
+      <a href="?blog" @click="open = false" class="text-slate-300 hover:text-white text-sm font-medium">
+        {{ t.nav.blog }}
       </a>
       <!-- Social links mobile -->
       <div class="flex gap-5 pt-2 border-t border-slate-800">

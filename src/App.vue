@@ -7,16 +7,23 @@ import AboutSection from './components/AboutSection.vue'
 import SkillsSection from './components/SkillsSection.vue'
 import ExperienceSection from './components/ExperienceSection.vue'
 import ProjectsSection from './components/ProjectsSection.vue'
+import BlogSection from './components/BlogSection.vue'
 import EducationSection from './components/EducationSection.vue'
 import ContactSection from './components/ContactSection.vue'
 import CVPage from './components/CVPage.vue'
+import BlogPage from './components/BlogPage.vue'
 
-const showCV = computed(() => new URLSearchParams(window.location.search).has('cv'))
+const params = new URLSearchParams(window.location.search)
+const showCV   = computed(() => params.has('cv'))
+const showBlog = computed(() => params.has('blog') || params.has('post'))
 </script>
 
 <template>
-  <!-- Mode CV (accessible via ?cv dans l'URL) -->
+  <!-- Mode CV -->
   <CVPage v-if="showCV" />
+
+  <!-- Mode Blog (liste ou article) -->
+  <BlogPage v-else-if="showBlog" />
 
   <!-- Portfolio principal -->
   <div v-else class="font-sans text-slate-800 bg-white">
@@ -26,6 +33,7 @@ const showCV = computed(() => new URLSearchParams(window.location.search).has('c
     <SkillsSection :t="t" />
     <ExperienceSection :t="t" />
     <ProjectsSection :t="t" />
+    <BlogSection :t="t" :lang="lang" />
     <EducationSection :t="t" />
     <ContactSection :t="t" :lang="lang" />
 
