@@ -1,26 +1,6 @@
 <script setup>
-import { ref, reactive } from 'vue'
 import { social } from '../config.js'
 defineProps({ t: Object, lang: String })
-
-const form = reactive({ name: '', email: '', message: '' })
-const status = ref('') // '', 'sending', 'success', 'error'
-
-async function submitForm(t) {
-  status.value = 'sending'
-  try {
-    // ← Remplace VOTRE-ID par ton identifiant Formspree (formspree.io)
-    const res = await fetch('https://formspree.io/f/VOTRE-ID', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({ name: form.name, _replyto: form.email, message: form.message }),
-    })
-    status.value = res.ok ? 'success' : 'error'
-    if (res.ok) { form.name = ''; form.email = ''; form.message = '' }
-  } catch {
-    status.value = 'error'
-  }
-}
 </script>
 
 <template>
@@ -79,43 +59,6 @@ async function submitForm(t) {
         </a>
       </div>
 
-      <!-- Formulaire de contact -->
-      <div class="max-w-xl mx-auto mb-12">
-        <p class="text-slate-400 text-sm mb-5">{{ t.contact.formTitle }}</p>
-        <form @submit.prevent="submitForm(t)" class="flex flex-col gap-3 text-left">
-          <input
-            v-model="form.name"
-            type="text"
-            :placeholder="t.contact.formName"
-            required
-            class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition"
-          >
-          <input
-            v-model="form.email"
-            type="email"
-            :placeholder="t.contact.formEmail"
-            required
-            class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition"
-          >
-          <textarea
-            v-model="form.message"
-            :placeholder="t.contact.formMessage"
-            rows="4"
-            required
-            class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition resize-none"
-          ></textarea>
-          <button
-            type="submit"
-            :disabled="status === 'sending'"
-            class="w-full px-6 py-3 bg-sky-500 hover:bg-sky-400 disabled:opacity-60 disabled:cursor-not-allowed text-white text-sm font-semibold rounded-xl transition hover:shadow-lg hover:shadow-sky-500/25"
-          >
-            {{ status === 'sending' ? t.contact.formSending : t.contact.formSubmit }}
-          </button>
-          <p v-if="status === 'success'" class="text-emerald-400 text-sm text-center">{{ t.contact.formSuccess }}</p>
-          <p v-if="status === 'error'" class="text-red-400 text-sm text-center">{{ t.contact.formError }}</p>
-        </form>
-      </div>
-
       <!-- Télécharger CV -->
       <div class="border-t border-white/10 pt-10">
         <p class="text-slate-400 text-sm mb-5">{{ t.contact.downloadTitle }}</p>
@@ -127,22 +70,6 @@ async function submitForm(t) {
           >
             <i class="fas fa-eye"></i>
             {{ lang === 'fr' ? 'Voir CV en ligne' : 'View CV online' }}
-          </a>
-          <a
-            href="/cv-rodrigue-tchanga-fr.pdf"
-            download
-            class="inline-flex items-center gap-2 px-5 py-3 bg-white/10 hover:bg-white/20 text-white text-sm font-semibold rounded-xl border border-white/10 transition"
-          >
-            <i class="fas fa-file-pdf"></i>
-            {{ t.contact.downloadFR }}
-          </a>
-          <a
-            href="/cv-rodrigue-tchanga-en.pdf"
-            download
-            class="inline-flex items-center gap-2 px-5 py-3 bg-white/10 hover:bg-white/20 text-white text-sm font-semibold rounded-xl border border-white/10 transition"
-          >
-            <i class="fas fa-file-pdf"></i>
-            {{ t.contact.downloadEN }}
           </a>
         </div>
         <p class="text-slate-600 text-xs mt-4">Formats PDF — mis à jour 2026</p>

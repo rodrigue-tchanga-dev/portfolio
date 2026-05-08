@@ -170,8 +170,6 @@ export default {
     email: 'tchangarodrigue@yahoo.fr',
     location: 'Strasbourg, France',
     downloadTitle: 'Download my CV',
-    downloadFR: 'CV en Français',
-    downloadEN: 'CV in English',
     githubLabel: 'GitHub Profile',
     linkedinLabel: 'LinkedIn Profile',
     formTitle: 'Send a message',

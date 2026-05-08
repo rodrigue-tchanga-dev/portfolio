@@ -28,7 +28,7 @@ const stats = [
               🇫🇷 Français — natif
             </span>
             <span class="px-4 py-2 bg-sky-50 text-sky-700 text-sm font-medium rounded-lg border border-sky-100">
-              🇬🇧 English — conversationnel
+              🇬🇧 English — professionnel
             </span>
           </div>
         </div>

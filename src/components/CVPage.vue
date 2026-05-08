@@ -1,115 +1,120 @@
 <script setup>
 import { lang, t, toggleLang } from '../i18n.js'
 import { social } from '../config.js'
-const printPage = () => window.print()
+
+function downloadPDF() {
+  window.print()
+}
 </script>
 
 <template>
   <!-- Toolbar (masquée à l'impression) -->
-  <div class="no-print fixed top-0 inset-x-0 z-50 bg-slate-900 text-white flex items-center justify-between px-6 h-12 shadow-lg">
+  <div class="no-print fixed top-0 inset-x-0 z-50 bg-white border-b border-slate-200 flex items-center justify-between px-6 h-11 shadow-sm">
     <div class="flex items-center gap-4 text-sm">
-      <a href="./" class="text-slate-400 hover:text-white flex items-center gap-1.5 transition-colors">
+      <a href="./" class="text-slate-500 hover:text-slate-900 flex items-center gap-1.5 transition-colors text-xs">
         <i class="fas fa-arrow-left text-xs"></i> Portfolio
       </a>
       <button @click="toggleLang"
-        class="border border-slate-700 hover:border-sky-500 text-slate-300 hover:text-sky-400 rounded px-2.5 py-1 text-xs font-semibold transition">
+        class="border border-slate-300 hover:border-slate-500 text-slate-500 hover:text-slate-800 rounded px-2 py-0.5 text-xs font-semibold transition">
         {{ lang === 'fr' ? 'EN' : 'FR' }}
       </button>
     </div>
-    <button @click="printPage"
-      class="flex items-center gap-2 bg-sky-500 hover:bg-sky-400 text-white text-sm font-semibold px-4 py-1.5 rounded-lg transition">
-      <i class="fas fa-file-pdf"></i>
-      {{ lang === 'fr' ? 'Télécharger PDF' : 'Download PDF' }}
+    <button @click="downloadPDF"
+      class="flex items-center gap-1.5 bg-slate-900 hover:bg-slate-700 text-white text-xs font-semibold px-3 py-1.5 rounded transition">
+      <i class="fas fa-print text-xs"></i>
+      {{ lang === 'fr' ? 'Imprimer / PDF' : 'Print / PDF' }}
     </button>
   </div>
 
-  <!-- Zone grise (écran) + page A4 -->
+  <!-- Fond écran -->
   <div class="cv-wrapper">
     <div class="cv-page">
 
-      <!-- ===== EN-TÊTE ===== -->
-      <header class="cv-header">
-        <div>
-          <h1>Rodrigue Tchanga</h1>
-          <p class="cv-role">{{ t.hero.role }}</p>
+      <!-- ══ EN-TÊTE ══ -->
+      <header class="cv-head">
+        <div class="cv-name-block">
+          <h1 class="cv-name">Rodrigue<span class="cv-name-last"> Tchanga</span></h1>
+          <div class="cv-accent-bar"></div>
+          <p class="cv-title">{{ t.hero.role }}</p>
         </div>
-        <div class="cv-contact">
-          <span><i class="fas fa-phone"></i> {{ t.contact.phone }}</span>
-          <span><i class="fas fa-envelope"></i> {{ t.contact.email }}</span>
-          <span><i class="fas fa-location-dot"></i> {{ t.contact.location }}</span>
-          <a :href="social.linkedin" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-          <a :href="social.github" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        <div class="cv-contact-bar">
+          <span>{{ t.contact.phone }}</span>
+          <span class="cv-dot">·</span>
+          <span>{{ t.contact.email }}</span>
+          <span class="cv-dot">·</span>
+          <span>{{ t.contact.location }}</span>
+          <span class="cv-dot">·</span>
+          <a :href="social.linkedin">LinkedIn</a>
+          <span class="cv-dot">·</span>
+          <a :href="social.github">GitHub</a>
         </div>
       </header>
 
-      <!-- ===== CORPS 2 COLONNES ===== -->
-      <div class="cv-body">
+      <div class="cv-divider"></div>
 
-        <!-- GAUCHE : Compétences + Formation + Langues -->
-        <aside class="cv-sidebar">
-
-          <section class="cv-section">
-            <h2 class="cv-section-title">{{ t.skills.title }}</h2>
-            <div v-for="cat in t.skills.categories" :key="cat.name" class="cv-skill-cat">
-              <h3>{{ cat.name }}</h3>
-              <p>{{ cat.items.join(' · ') }}</p>
+      <!-- ══ EXPÉRIENCE ══ -->
+      <section class="cv-section">
+        <h2 class="cv-section-title">{{ t.experience.title }}</h2>
+        <div v-for="exp in t.experience.items" :key="exp.period" class="cv-exp">
+          <div class="cv-exp-top">
+            <div>
+              <span class="cv-exp-role">{{ exp.role }}</span>
+              <span class="cv-exp-sep"> — </span>
+              <span class="cv-exp-company">{{ exp.company }}, {{ exp.location }}</span>
             </div>
-          </section>
+            <span class="cv-exp-period">{{ exp.period }}</span>
+          </div>
+          <ul class="cv-bullets">
+            <li v-for="b in exp.bullets" :key="b">{{ b }}</li>
+          </ul>
+          <p class="cv-tech">{{ exp.tech.join(' · ') }}</p>
+        </div>
+      </section>
 
-          <section class="cv-section">
-            <h2 class="cv-section-title">{{ t.education.title }}</h2>
-            <div v-for="edu in t.education.items" :key="edu.year" class="cv-edu-item">
-              <p class="cv-edu-year">{{ edu.year }}</p>
-              <p class="cv-edu-degree">{{ edu.degree }}</p>
-              <p class="cv-edu-school">{{ edu.school }} — {{ edu.location }}</p>
+      <!-- ══ PROJETS ══ -->
+      <section class="cv-section">
+        <h2 class="cv-section-title">{{ t.projects.title }}</h2>
+        <div v-for="p in t.projects.items" :key="p.name" class="cv-project">
+          <div class="cv-exp-top">
+            <div>
+              <span class="cv-exp-role">{{ p.name }}</span>
+              <span class="cv-exp-sep"> — </span>
+              <span class="cv-exp-company">{{ p.tagline }}</span>
             </div>
-          </section>
+            <span class="cv-project-status">{{ p.status }}</span>
+          </div>
+          <p class="cv-project-desc">{{ p.description }}</p>
+          <p class="cv-tech">{{ p.tech.join(' · ') }}</p>
+        </div>
+      </section>
 
-          <section class="cv-section">
-            <h2 class="cv-section-title">{{ lang === 'fr' ? 'Langues' : 'Languages' }}</h2>
-            <p class="cv-lang-item">🇫🇷 {{ lang === 'fr' ? 'Français — Natif' : 'French — Native' }}</p>
-            <p class="cv-lang-item">🇬🇧 {{ lang === 'fr' ? 'Anglais — Courant' : 'English — Conversational' }}</p>
-          </section>
+      <!-- ══ COMPÉTENCES ══ -->
+      <section class="cv-section cv-page-break">
+        <h2 class="cv-section-title">{{ t.skills.title }}</h2>
+        <div class="cv-skills-grid">
+          <div v-for="cat in t.skills.categories" :key="cat.name" class="cv-skill-row">
+            <span class="cv-skill-cat">{{ cat.name }}</span>
+            <span class="cv-skill-items">{{ cat.items.join(' · ') }}</span>
+          </div>
+        </div>
+      </section>
 
-        </aside>
+      <!-- ══ FORMATION + LANGUES ══ -->
+      <div class="cv-bottom-row">
+        <section class="cv-section cv-section-half">
+          <h2 class="cv-section-title">{{ t.education.title }}</h2>
+          <div v-for="edu in t.education.items" :key="edu.year" class="cv-edu">
+            <span class="cv-edu-year">{{ edu.year }}</span>
+            <span class="cv-edu-degree">{{ edu.degree }}</span>
+            <span class="cv-edu-school">{{ edu.school }}, {{ edu.location }}</span>
+          </div>
+        </section>
 
-        <!-- DROITE : Expérience + Projets -->
-        <main class="cv-main">
-
-          <section class="cv-section">
-            <h2 class="cv-section-title">{{ t.experience.title }}</h2>
-            <div v-for="exp in t.experience.items" :key="exp.period" class="cv-exp-item">
-              <div class="cv-exp-header">
-                <div>
-                  <p class="cv-exp-role">{{ exp.role }}</p>
-                  <p class="cv-exp-company">{{ exp.company }} — {{ exp.location }}</p>
-                </div>
-                <p class="cv-exp-period">{{ exp.period }}</p>
-              </div>
-              <ul class="cv-exp-bullets">
-                <li v-for="b in exp.bullets" :key="b">{{ b }}</li>
-              </ul>
-              <div class="cv-tech-tags">
-                <span v-for="tech in exp.tech" :key="tech">{{ tech }}</span>
-              </div>
-            </div>
-          </section>
-
-          <section class="cv-section">
-            <h2 class="cv-section-title">{{ t.projects.title }}</h2>
-            <div v-for="p in t.projects.items" :key="p.name" class="cv-project-item">
-              <div class="cv-project-header">
-                <p class="cv-project-name">{{ p.name }} <span class="cv-project-tagline">— {{ p.tagline }}</span></p>
-                <span class="cv-project-status">{{ p.status }}</span>
-              </div>
-              <p class="cv-project-desc">{{ p.description }}</p>
-              <div class="cv-tech-tags">
-                <span v-for="tech in p.tech" :key="tech">{{ tech }}</span>
-              </div>
-            </div>
-          </section>
-
-        </main>
+        <section class="cv-section cv-section-half">
+          <h2 class="cv-section-title">{{ lang === 'fr' ? 'Langues' : 'Languages' }}</h2>
+          <p class="cv-lang">{{ lang === 'fr' ? 'Français — natif' : 'French — native' }}</p>
+          <p class="cv-lang">{{ lang === 'fr' ? 'Anglais — professionnel' : 'English — professional' }}</p>
+        </section>
       </div>
 
     </div>
@@ -117,152 +122,175 @@ const printPage = () => window.print()
 </template>
 
 <style scoped>
-/* ── Fond écran ── */
+/* ── Wrapper écran ── */
 .cv-wrapper {
   min-height: 100vh;
-  background: #cbd5e1;
-  padding: 4rem 1rem 3rem;
+  background: #e8eaed;
+  padding: 3.5rem 1rem 3rem;
+  display: flex;
+  justify-content: center;
 }
 
 /* ── Feuille A4 ── */
 .cv-page {
   width: 210mm;
   min-height: 297mm;
-  margin: 0 auto;
   background: #fff;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+  box-shadow: 0 4px 32px rgba(0,0,0,0.14);
   font-family: 'Inter', sans-serif;
-  font-size: 9.5pt;
+  font-size: 9pt;
   color: #1e293b;
-  line-height: 1.45;
+  line-height: 1.5;
+  padding: 22mm 20mm 18mm;
+  box-sizing: border-box;
 }
 
 /* ── En-tête ── */
-.cv-header {
-  background: #0f172a;
-  color: #fff;
-  padding: 18px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.cv-header h1 {
-  font-size: 20pt;
+.cv-head { margin-bottom: 10px; }
+
+.cv-name-block { margin-bottom: 8px; }
+
+.cv-name {
+  font-size: 26pt;
   font-weight: 800;
-  color: #fff;
-  margin: 0 0 3px;
-  letter-spacing: -0.3px;
+  color: #0f172a;
+  letter-spacing: -1px;
+  line-height: 1;
+  margin: 0 0 6px;
 }
-.cv-role {
-  font-size: 10pt;
-  color: #7dd3fc;
+.cv-name-last { color: #0369a1; }
+
+.cv-accent-bar {
+  width: 36px;
+  height: 3px;
+  background: #0369a1;
+  margin-bottom: 6px;
+}
+
+.cv-title {
+  font-size: 10.5pt;
+  color: #475569;
+  font-weight: 400;
   margin: 0;
-  font-weight: 500;
 }
-.cv-contact {
+
+.cv-contact-bar {
   display: flex;
-  flex-direction: column;
-  gap: 3px;
-  font-size: 8pt;
-  color: #94a3b8;
-  text-align: right;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 0;
+  font-size: 7.5pt;
+  color: #64748b;
+  margin-top: 6px;
 }
-.cv-contact a { color: #94a3b8; text-decoration: none; }
-.cv-contact i { margin-right: 5px; color: #38bdf8; }
+.cv-contact-bar a { color: #0369a1; text-decoration: none; }
+.cv-contact-bar a:hover { text-decoration: underline; }
+.cv-dot { margin: 0 5px; color: #cbd5e1; }
 
-/* ── Corps 2 colonnes ── */
-.cv-body { display: flex; }
-
-/* ── Colonne gauche ── */
-.cv-sidebar {
-  width: 35%;
-  background: #f8fafc;
-  border-right: 1px solid #e2e8f0;
-  padding: 16px 14px;
-}
-
-/* ── Colonne droite ── */
-.cv-main {
-  flex: 1;
-  padding: 16px 18px;
+/* ── Divider ── */
+.cv-divider {
+  border: none;
+  border-top: 1.5px solid #0369a1;
+  margin: 10px 0 14px;
+  opacity: 0.25;
 }
 
 /* ── Sections ── */
-.cv-section { margin-bottom: 16px; }
+.cv-section { margin-bottom: 14px; }
 .cv-section-title {
-  font-size: 7.5pt;
+  font-size: 7pt;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1.2px;
-  color: #0ea5e9;
-  border-bottom: 1.5px solid #e0f2fe;
-  padding-bottom: 3px;
-  margin-bottom: 9px;
+  letter-spacing: 1.8px;
+  color: #94a3b8;
+  margin: 0 0 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #f1f5f9;
 }
-
-/* ── Compétences ── */
-.cv-skill-cat { margin-bottom: 7px; }
-.cv-skill-cat h3 { font-size: 8pt; font-weight: 600; color: #334155; margin: 0 0 1px; }
-.cv-skill-cat p  { font-size: 7.5pt; color: #64748b; margin: 0; }
-
-/* ── Formation ── */
-.cv-edu-item  { margin-bottom: 7px; }
-.cv-edu-year  { font-size: 7.5pt; font-weight: 700; color: #0ea5e9; margin: 0; }
-.cv-edu-degree { font-size: 8.5pt; font-weight: 600; color: #1e293b; margin: 0; }
-.cv-edu-school { font-size: 7.5pt; color: #64748b; margin: 0; }
-
-/* ── Langues ── */
-.cv-lang-item { font-size: 8.5pt; color: #475569; margin: 0 0 3px; }
 
 /* ── Expérience ── */
-.cv-exp-item {
-  margin-bottom: 12px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #f1f5f9;
+.cv-exp {
+  margin-bottom: 11px;
+  padding-left: 10px;
+  border-left: 2px solid #e2e8f0;
   break-inside: avoid;
 }
-.cv-exp-item:last-child { border-bottom: none; }
-.cv-exp-header {
+.cv-exp:last-child { margin-bottom: 0; }
+
+.cv-exp-top {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: baseline;
   gap: 8px;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
-.cv-exp-role    { font-size: 9.5pt; font-weight: 700; color: #0f172a; margin: 0; }
-.cv-exp-company { font-size: 8pt; color: #475569; margin: 0; }
-.cv-exp-period  { font-size: 7.5pt; color: #0ea5e9; font-weight: 600; white-space: nowrap; margin: 0; text-align: right; flex-shrink: 0; }
-.cv-exp-bullets { margin: 3px 0 5px 14px; padding: 0; }
-.cv-exp-bullets li { font-size: 8pt; color: #475569; margin-bottom: 2px; }
+.cv-exp-role    { font-size: 9.5pt; font-weight: 700; color: #0f172a; }
+.cv-exp-sep     { color: #cbd5e1; }
+.cv-exp-company { font-size: 8.5pt; color: #64748b; }
+.cv-exp-period  {
+  font-size: 7.5pt;
+  color: #0369a1;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cv-bullets {
+  margin: 2px 0 4px 12px;
+  padding: 0;
+}
+.cv-bullets li {
+  font-size: 8.5pt;
+  color: #475569;
+  margin-bottom: 1.5px;
+  list-style: disc;
+}
+
+.cv-tech {
+  font-size: 7.5pt;
+  color: #94a3b8;
+  margin: 0;
+  font-style: italic;
+}
 
 /* ── Projets ── */
-.cv-project-item { margin-bottom: 10px; break-inside: avoid; }
-.cv-project-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 3px; }
-.cv-project-name   { font-size: 9pt; font-weight: 700; color: #0f172a; margin: 0; }
-.cv-project-tagline { font-weight: 400; color: #64748b; }
-.cv-project-status { font-size: 7pt; font-weight: 600; background: #f0f9ff; color: #0369a1; border: 1px solid #bae6fd; padding: 1px 6px; border-radius: 99px; white-space: nowrap; }
-.cv-project-desc   { font-size: 8pt; color: #475569; margin: 0 0 5px; }
-
-/* ── Badges tech ── */
-.cv-tech-tags { display: flex; flex-wrap: wrap; gap: 3px; }
-.cv-tech-tags span {
+.cv-project { margin-bottom: 9px; break-inside: avoid; }
+.cv-project-status {
   font-size: 7pt;
-  background: #f1f5f9;
-  color: #475569;
+  font-weight: 600;
+  color: #64748b;
+  white-space: nowrap;
+  flex-shrink: 0;
+  background: #f8fafc;
   border: 1px solid #e2e8f0;
-  padding: 1px 5px;
+  padding: 1px 6px;
   border-radius: 3px;
 }
+.cv-project-desc { font-size: 8.5pt; color: #475569; margin: 2px 0 3px; }
+
+/* ── Compétences ── */
+.cv-skills-grid { display: flex; flex-direction: column; gap: 4px; }
+.cv-skill-row   { display: flex; gap: 8px; align-items: baseline; }
+.cv-skill-cat   { font-size: 8pt; font-weight: 700; color: #334155; min-width: 110px; flex-shrink: 0; }
+.cv-skill-items { font-size: 8pt; color: #64748b; }
+
+/* ── Bas de page (Formation + Langues côte à côte) ── */
+.cv-bottom-row { display: flex; gap: 20px; }
+.cv-section-half { flex: 1; }
+
+.cv-edu { display: flex; gap: 8px; align-items: baseline; margin-bottom: 4px; flex-wrap: wrap; }
+.cv-edu-year   { font-size: 8pt; font-weight: 700; color: #0369a1; flex-shrink: 0; }
+.cv-edu-degree { font-size: 8.5pt; font-weight: 600; color: #1e293b; }
+.cv-edu-school { font-size: 8pt; color: #64748b; }
+
+.cv-lang { font-size: 8.5pt; color: #475569; margin: 0 0 3px; }
 
 /* ── Impression ── */
 @media print {
-  .no-print    { display: none !important; }
-  .cv-wrapper  { padding: 0; background: #fff; min-height: unset; }
-  .cv-page     { box-shadow: none; width: 100%; min-height: unset; }
-  .cv-sidebar  { background: #f8fafc !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .cv-header   { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  @page        { size: A4 portrait; margin: 10mm 12mm; }
+  .no-print      { display: none !important; }
+  .cv-wrapper    { padding: 0; background: #fff; display: block; }
+  .cv-page       { box-shadow: none; width: 100%; min-height: unset; padding: 14mm 16mm; }
+  .cv-page-break { break-before: page; padding-top: 14mm; }
+  @page          { size: A4 portrait; margin: 0; }
 }
 </style>
