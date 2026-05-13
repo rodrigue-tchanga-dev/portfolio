@@ -4,7 +4,7 @@ import { social } from '../config.js'
 defineProps({ t: Object, lang: String })
 defineEmits(['toggle-lang'])
 const open = ref(false)
-const links = ['about', 'skills', 'experience', 'projects', 'contact']
+const links = ['about', 'skills', 'experience', 'projects', 'partners', 'contact']
 </script>
 
 <template>

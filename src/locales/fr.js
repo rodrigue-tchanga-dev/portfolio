@@ -4,6 +4,7 @@ export default {
     skills: 'Compétences',
     experience: 'Expérience',
     projects: 'Réalisations',
+    partners: 'Collaborateurs',
     contact: 'Contact',
     downloadCV: 'Télécharger CV',
     blog: 'Blog',
@@ -151,6 +152,19 @@ export default {
         status: 'Personnel',
         github: '',
         demo: '',
+      },
+    ],
+  },
+
+  partners: {
+    title: 'Collaborateurs',
+    subtitle: 'Partenaires avec qui je co-construis des solutions',
+    items: [
+      {
+        name: 'ED Factory',
+        description: 'Studio digital spécialisé dans la création de solutions web sur mesure. Collaboration sur plusieurs projets de développement et de conception.',
+        url: 'https://ed-factory.com/',
+        icon: 'fa-rocket',
       },
     ],
   },

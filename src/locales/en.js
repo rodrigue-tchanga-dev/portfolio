@@ -4,6 +4,7 @@ export default {
     skills: 'Skills',
     experience: 'Experience',
     projects: 'Projects',
+    partners: 'Collaborators',
     contact: 'Contact',
     downloadCV: 'Download CV',
     blog: 'Blog',
@@ -151,6 +152,19 @@ export default {
         status: 'Personal',
         github: '',
         demo: '',
+      },
+    ],
+  },
+
+  partners: {
+    title: 'Collaborators',
+    subtitle: 'Partners with whom I co-build solutions',
+    items: [
+      {
+        name: 'ED Factory',
+        description: 'Digital studio specialized in custom web solutions. Collaboration on multiple development and design projects.',
+        url: 'https://ed-factory.com/',
+        icon: 'fa-rocket',
       },
     ],
   },

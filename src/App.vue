@@ -7,6 +7,7 @@ import AboutSection from './components/AboutSection.vue'
 import SkillsSection from './components/SkillsSection.vue'
 import ExperienceSection from './components/ExperienceSection.vue'
 import ProjectsSection from './components/ProjectsSection.vue'
+import PartnersSection from './components/PartnersSection.vue'
 import BlogSection from './components/BlogSection.vue'
 import EducationSection from './components/EducationSection.vue'
 import ContactSection from './components/ContactSection.vue'
@@ -33,6 +34,7 @@ const showBlog = computed(() => params.has('blog') || params.has('post'))
     <SkillsSection :t="t" />
     <ExperienceSection :t="t" />
     <ProjectsSection :t="t" />
+    <PartnersSection :t="t" />
     <BlogSection :t="t" :lang="lang" />
     <EducationSection :t="t" />
     <ContactSection :t="t" :lang="lang" />
