@@ -173,7 +173,7 @@ export default {
     title: 'Formation',
     items: [
       { year: '2017', degree: 'Spécialisation en Analyste Informaticien', school: 'EQL', location: 'Montrouge, France' },
-      { year: '2015', degree: 'Diplôme d\'Ingénieur Généraliste', school: 'ESIEE Paris', location: 'Paris, France' },
+      { year: '2015', degree: 'Diplôme d\'Ingénieur', school: 'ESIEE Paris', location: 'Paris, France' },
     ],
   },
 
