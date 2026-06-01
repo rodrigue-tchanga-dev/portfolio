@@ -94,7 +94,7 @@ export default {
           'Tests unitaires et fonctionnels avec TDD / Gherkin Cucumber',
           'Livraisons régulières multi-environnements',
         ],
-        tech: ['.NET Core', 'xUnit', 'Gherkin', 'Entity Framework', 'Telerik', 'Jira'],
+        tech: ['.NET Core', 'xUnit', 'Gherkin', 'Entity Framework', 'Telerik', 'Jira','Jenkins', 'Github'],
       },
       {
         period: 'Avr 2021 – Mar 2023',
