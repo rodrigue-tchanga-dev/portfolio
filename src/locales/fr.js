@@ -94,7 +94,7 @@ export default {
           'Tests unitaires et fonctionnels avec TDD / Gherkin Cucumber',
           'Livraisons régulières multi-environnements',
         ],
-        tech: ['.NET Core', 'xUnit', 'Gherkin', 'Entity Framework', 'Telerik', 'Jira'],
+        tech: ['.NET Core', 'xUnit', 'Gherkin', 'Entity Framework', 'Telerik', 'Jira','Jenkins', 'Github'],
       },
       {
         period: 'Avr 2021 – Mar 2023',
@@ -173,7 +173,7 @@ export default {
     title: 'Formation',
     items: [
       { year: '2017', degree: 'Spécialisation en Analyste Informaticien', school: 'EQL', location: 'Montrouge, France' },
-      { year: '2015', degree: 'Diplôme d\'Ingénieur Généraliste', school: 'ESIEE Paris', location: 'Paris, France' },
+      { year: '2015', degree: 'Diplôme d\'Ingénieur', school: 'ESIEE Paris', location: 'Paris, France' },
     ],
   },
 

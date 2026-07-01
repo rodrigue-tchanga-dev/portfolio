@@ -1,14 +1,18 @@
 # De la France au Canada — développeur .NET à Montréal
 
-En septembre 2024, je quittais Issy-les-Moulineaux pour rejoindre **Desjardins**, l'une des plus grandes coopératives financières au monde, à Montréal. Neuf mois plus tard, voici ce que j'ai retenu de cette aventure professionnelle et humaine.
+En Avril 2024, je quittais Issy-les-Moulineaux pour rejoindre **l'Institut de Santé Publique du Québec (INSPQ)** à Montréal dont le rôle est de soutenir le ministère de la Santé et les services sociaux dans leurs misson de santé publique. Dans ce cadre, j'ai eu la chance de pouvoir collaborer avec des collègues qui m'ont donnés un premier aperçu de la culture au travail d'un point de vu Québécois. 
+Voici ce que j'ai retenu de cette aventure professionnelle et humaine.
 
 ## Le choc culturel… positif
 
-La première chose qui frappe quand on intègre une équipe canadienne, c'est la **culture du feedback**. Les réunions sont structurées différemment : les avis s'expriment ouvertement, sans la hiérarchie implicite à laquelle on est habitués en France. Le junior et le senior parlent d'égal à égal en réunion. C'est déroutant au début, puis très libérateur.
+La première chose qui frappe quand on intègre une équipe canadienne, c'est l'accent !. En France, on dit des Québécois qu'ils ont un accent et au Canada, les Québécois se targuent de parler le fraçais d'origine. Si vous êtes curieux à ce sujet, je vous laissent faire vos propres recherches :)  **culture du feedback**. Les réunions sont structurées différemment : les avis s'expriment ouvertement, sans la hiérarchie implicite à laquelle on est habitués en France. Le junior et le senior parlent d'égal à égal en réunion. C'est déroutant au début, puis très libérateur.Tout le monde peut apporter des idées qui seront débatus bien évidemment.
 
 Autre différence notable : la ponctualité des cérémonies Agile. Les standups commencent et finissent à l'heure. Point. Ce que j'avais vu comme une formalité en France devient une vraie discipline là-bas.
 
 ## La mission technique
+
+A l'INSPQ, j'ai travaillé sur le programme Qué
+
 
 Chez Desjardins, j'ai travaillé sur une migration critique : faire passer des composantes applicatives de **Windows Server 2012 / SQL Server 2012** vers une infrastructure moderne et sécurisée. Les enjeux étaient élevés : données financières critiques, équipes réparties sur plusieurs sites, zéro tolérance pour le downtime.
 
