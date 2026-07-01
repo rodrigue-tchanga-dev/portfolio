@@ -2,8 +2,25 @@ import githubActionsFr from './fr/github-actions-vue3.md?raw'
 import githubActionsEn from './en/github-actions-vue3.md?raw'
 import devCanadaFr from './fr/dev-canada.md?raw'
 import devCanadaEn from './en/dev-canada.md?raw'
+import reseauTlsDnsFr from './fr/reseau-tls-dns-ports.md?raw'
+import reseauTlsDnsEn from './en/reseau-tls-dns-ports.md?raw'
 
 export const posts = [
+  {
+    slug: 'reseau-tls-dns-ports',
+    date: '2026-07-01',
+    tags: ['Cybersécurité', 'Réseau', 'TLS'],
+    readTime: 8,
+    title: {
+      fr: 'Le réseau expliqué à un développeur .NET — IP, ports, DNS et TLS',
+      en: 'Networking Explained for a .NET Developer — IP, Ports, DNS and TLS',
+    },
+    summary: {
+      fr: 'Premier article de mon parcours AppSec : le trajet d\'une requête, IP vs MAC, ports, TCP/UDP, résolution DNS et handshake TLS — avec schémas.',
+      en: 'First article of my AppSec journey: the path of a request, IP vs MAC, ports, TCP/UDP, DNS resolution and the TLS handshake — with diagrams.',
+    },
+    content: { fr: reseauTlsDnsFr, en: reseauTlsDnsEn },
+  },
   {
     slug: 'github-actions-vue3',
     date: '2026-05-01',
