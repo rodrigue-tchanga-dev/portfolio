@@ -5,7 +5,25 @@ import devCanadaEn from './en/dev-canada.md?raw'
 import reseauTlsDnsFr from './fr/reseau-tls-dns-ports.md?raw'
 import reseauTlsDnsEn from './en/reseau-tls-dns-ports.md?raw'
 
+import comprendreMemoireFr from './fr/comprendre-la-memoire-en-csharp.md?raw'
+import comprendreMemoireEn from './en/comprendre-la-memoire-en-csharp.md?raw'
+
 export const posts = [
+   {
+    slug: 'comprendre-la-memoire-en-csharp',
+    date: '2026-07-01',
+    tags: ['C#', 'Mémoire', 'Stack', 'Heap', 'GC', 'Unsafe'],
+    readTime: 8,
+    title: {
+      fr: 'Comprendre la mémoire en C# — Stack, Heap, GC et Unsafe',
+      en: 'Understanding Memory in C# — Stack, Heap, GC and Unsafe',
+    },
+    summary: {
+      fr: 'Principes de base de la gestion de la mémoire en C# — avec schémas.',
+      en: 'Basic principles of memory management in C# — with diagrams.',
+    },
+    content: { fr: comprendreMemoireFr, en: comprendreMemoireEn },
+  },
   {
     slug: 'reseau-tls-dns-ports',
     date: '2026-07-01',
