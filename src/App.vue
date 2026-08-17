@@ -13,15 +13,20 @@ import EducationSection from './components/EducationSection.vue'
 import ContactSection from './components/ContactSection.vue'
 import CVPage from './components/CVPage.vue'
 import BlogPage from './components/BlogPage.vue'
+import CoursePage from './components/CoursePage.vue'
 
 const params = new URLSearchParams(window.location.search)
-const showCV   = computed(() => params.has('cv'))
-const showBlog = computed(() => params.has('blog') || params.has('post'))
+const showCV     = computed(() => params.has('cv'))
+const showCourse = computed(() => params.has('course'))
+const showBlog   = computed(() => params.has('blog') || params.has('post'))
 </script>
 
 <template>
   <!-- Mode CV -->
   <CVPage v-if="showCV" />
+
+  <!-- Mode Cours (série ou leçon) -->
+  <CoursePage v-else-if="showCourse" />
 
   <!-- Mode Blog (liste ou article) -->
   <BlogPage v-else-if="showBlog" />

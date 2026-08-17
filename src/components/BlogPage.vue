@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { marked } from 'marked'
 import { lang, t, toggleLang } from '../i18n.js'
 import { posts } from '../blog/index.js'
+import { series } from '../courses/index.js'
 
 const params = new URLSearchParams(window.location.search)
 const slug = params.get('post')
@@ -87,6 +88,24 @@ function formatDate(dateStr) {
       <div class="mb-10">
         <p class="text-sky-600 text-sm font-semibold tracking-widest uppercase mb-2">{{ t.blog.title }}</p>
         <h1 class="text-3xl font-black text-slate-900">{{ t.blog.subtitle }}</h1>
+      </div>
+
+      <!-- Séries de cours -->
+      <div v-if="series.length" class="flex flex-col gap-4 mb-10">
+        <a
+          v-for="s in series" :key="s.id"
+          :href="'?course=' + s.id"
+          class="group bg-slate-900 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all block"
+        >
+          <p class="text-sky-400 text-xs font-semibold tracking-widest uppercase mb-2">
+            {{ t.courses.label }} · {{ s.lessons.length }} {{ t.courses.lessonsCount }}
+          </p>
+          <h2 class="text-white font-bold text-lg leading-snug mb-2 group-hover:text-sky-300 transition-colors">
+            {{ s.name[lang] }}
+          </h2>
+          <p class="text-slate-400 text-sm leading-relaxed mb-3">{{ s.description[lang] }}</p>
+          <span class="text-sky-400 font-semibold text-sm group-hover:underline">{{ t.courses.startSeries }}</span>
+        </a>
       </div>
 
       <div class="flex flex-col gap-5">
