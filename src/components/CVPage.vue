@@ -42,8 +42,6 @@ function downloadPDF() {
           <span class="cv-dot">·</span>
           <span>{{ t.contact.email }}</span>
           <span class="cv-dot">·</span>
-          <span>{{ t.contact.location }}</span>
-          <span class="cv-dot">·</span>
           <a :href="social.linkedin">LinkedIn</a>
           <span class="cv-dot">·</span>
           <a :href="social.github">GitHub</a>

@@ -29,13 +29,6 @@ defineProps({ t: Object, lang: String })
           </div>
           <span class="text-sm font-medium">{{ t.contact.email }}</span>
         </a>
-
-        <div class="flex items-center gap-3 bg-white/5 border border-white/10 text-slate-400 px-5 py-3.5 rounded-xl">
-          <div class="w-9 h-9 bg-slate-500/20 rounded-lg flex items-center justify-center">
-            <i class="fas fa-location-dot text-slate-400 text-sm"></i>
-          </div>
-          <span class="text-sm font-medium">{{ t.contact.location }}</span>
-        </div>
       </div>
 
       <!-- Réseaux sociaux -->
