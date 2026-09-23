@@ -1,4 +1,4 @@
-# Cours 1 - La mémoire (RAM)
+<!--# Cours 1 - La mémoire (RAM)-->
 
 ## Objectif du cours
 

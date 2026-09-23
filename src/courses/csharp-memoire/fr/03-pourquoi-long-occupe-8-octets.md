@@ -46,9 +46,7 @@ Grâce à ces 64 bits, il peut représenter énormément plus de valeurs.
 Sa plage est comprise entre :
 
 ```text
--9 223 372 036 854 775 808
-et
- 9 223 372 036 854 775 807
+-9 223 372 036 854 775 808 et 9 223 372 036 854 775 807
 ```
 
 Cette différence est gigantesque.
@@ -79,3 +77,11 @@ Chaque type répond à un besoin précis.
 > Un `long` occupe toujours **8 octets (64 bits)**.
 >
 > Il permet de représenter des nombres beaucoup plus grands qu'un `int`, mais il utilise également deux fois plus de mémoire.
+
+---
+
+## Dans le prochain chapitre...
+
+Maintenant que nous savons pourquoi un `long` est défini sur 8 octets, nous allons répondre à une nouvelle question :
+
+> **Pourquoi un `boll` occupe-t-il 1 octet ?**
